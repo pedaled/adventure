@@ -1,104 +1,167 @@
 <!DOCTYPE html>
+<!-- Tells the browser this is an HTML5 document -->
 <html lang="en">
+
 <head>
+  <!-- HEAD: invisible setup — character encoding, viewport, title, fonts, and all CSS styles -->
+
+  <!-- UTF-8 ensures special characters (é, å, ö etc.) display correctly -->
   <meta charset="UTF-8" />
+  <!-- Makes the site look correct on mobile screens (no tiny zoomed-out layout) -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- The tab title shown in the browser -->
   <title>Eddie Appelberg — Cycling & Adventure</title>
+
+  <!-- Google Fonts: loads three typefaces from the web
+       - Playfair Display: elegant serif for headings
+       - DM Sans: clean modern body text
+       - DM Mono: monospace for labels/tags -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+
   <style>
+    /* ══════════════════════════════════════════
+       COLOUR PALETTE
+       CSS variables defined once here, reused everywhere below.
+       To change a colour sitewide, just edit it here.
+    ══════════════════════════════════════════ */
     :root {
-      --green:       #1E3A2F;
-      --green-mid:   #2D5240;
-      --green-light: #4A7C5F;
-      --beige:       #F0E8D8;
-      --beige-dark:  #D9CDB8;
-      --red:         #8B3A2A;
-      --red-light:   #C0533F;
-      --text:        #1A1A1A;
-      --text-muted:  #6B6B5A;
-      --white:       #FDFAF5;
+      /* Greens — olive groves, cypress, spring hillsides */
+      --green:         #1E3D2F;   /* deep forest, anchoring dark */
+      --green-mid:     #3A6B4A;   /* lush olive */
+      --green-light:   #6da874;   /* fresh spring leaf */
+
+      /* Earthy neutrals — stone walls, Puglia soil, gravel paths */
+      --stone:         #C4B49A;   /* sun-bleached limestone */
+      --stone-dark:    #8C7B65;   /* aged terracotta wall */
+      --soil:          #7A5C3E;   /* red Puglia earth */
+
+      /* Warm reds — terracotta rooftops, sun-dried clay */
+      --red:           #a0503b;   /* classic terracotta */
+      --red-warm:      #cc7451;   /* faded ochre-red, softer */
+
+      /* Yellows — spring sun, wild fennel, lemon groves */
+      --yellow:        #D4A94A;   /* warm golden afternoon */
+      --yellow-soft:   #E8CC7A;   /* hazy spring light */
+
+      /* Blues — Adriatic sky, mountain haze */
+      --sky:           #7AAFC4;   /* open sky blue */
+      --sky-deep:      #4A7A96;   /* dusk over the Alps */
+
+      /* Grays — alpine rock, ancient stone */
+      --gray:          #8A8E8C;   /* mountain granite */
+      --gray-light:    #C8CBC9;   /* morning mist */
+
+      /* Text */
+      --text:          #1A1A18;   /* near-black, warm tint */
+      --text-muted:    #7A7260;   /* dusty warm gray */
+
+      /* Base */
+      --white:         #FDFAF4;   /* warm off-white, like aged paper */
+      --black:         #111110;   /* warm near-black */
     }
 
+    /* ══════════════════════════════════════════
+       GLOBAL RESET & BASE STYLES
+       Removes browser default margins/padding so we start from scratch.
+       Sets the default font, background, and text colour for the whole page.
+    ══════════════════════════════════════════ */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    /* Enables smooth scrolling when clicking anchor links (e.g. #about) */
     html { scroll-behavior: smooth; }
 
     body {
       font-family: 'DM Sans', sans-serif;
-      background: var(--beige);
+      background: var(--stone);       /* warm stone background throughout */
       color: var(--text);
-      overflow-x: hidden;
+      overflow-x: hidden;             /* prevents horizontal scrollbar from layout quirks */
     }
 
-    /* ── NAV ── */
+    /* ══════════════════════════════════════════
+       NAVIGATION BAR
+       Fixed to the top of the screen so it stays visible while scrolling.
+       Dark green with slight transparency and blur effect.
+    ══════════════════════════════════════════ */
     nav {
-      position: fixed;
+      position: fixed;                /* sticks to top even when page scrolls */
       top: 0; left: 0; right: 0;
-      z-index: 100;
+      z-index: 100;                   /* sits above all other elements */
       display: flex;
-      justify-content: space-between;
+      justify-content: space-between; /* logo left, links right */
       align-items: center;
       padding: 1.2rem 3rem;
-      background: rgba(30, 58, 47, 0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(240,232,216,0.1);
+      background: rgba(30, 61, 47, 0.96);
+      backdrop-filter: blur(8px);     /* frosted glass blur effect */
+      border-bottom: 1px solid rgba(196,180,154,0.15);
     }
 
+    /* The "Eddie Appelberg" logo text in the nav */
     .nav-logo {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
-      color: var(--beige);
+      color: var(--stone);
       letter-spacing: 0.05em;
       text-decoration: none;
     }
 
+    /* The row of nav links (About, Blog, Links, Routes) */
     .nav-links {
       display: flex;
       gap: 2.5rem;
-      list-style: none;
+      list-style: none;               /* removes bullet points from the <ul> */
     }
 
+    /* Individual nav link style — small monospace uppercase text */
     .nav-links a {
       font-family: 'DM Mono', monospace;
       font-size: 0.75rem;
       letter-spacing: 0.15em;
       text-transform: uppercase;
-      color: var(--beige-dark);
+      color: var(--stone-dark);
       text-decoration: none;
-      transition: color 0.2s;
+      transition: color 0.2s;         /* smooth colour change on hover */
     }
 
-    .nav-links a:hover { color: var(--beige); }
+    /* Nav link hover state — brightens to full stone colour */
+    .nav-links a:hover { color: var(--stone); }
 
-    /* ── HERO ── */
+    /* ══════════════════════════════════════════
+       HERO SECTION
+       The big full-screen split layout at the top of the page.
+       Left side: text/headline. Right side: photo + stats.
+    ══════════════════════════════════════════ */
     .hero {
-      min-height: 100vh;
+      min-height: 100vh;              /* fills the full browser window height */
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr; /* two equal columns side by side */
       position: relative;
       overflow: hidden;
     }
 
+    /* Left half of hero — dark green with headline text */
     .hero-left {
       background: var(--green);
       display: flex;
       flex-direction: column;
-      justify-content: center;
-      padding: 8rem 4rem 4rem 4rem;
+      justify-content: center;        /* vertically centres the text block */
+      padding: 8rem 4rem 4rem 4rem;   /* extra top padding clears the fixed nav */
       position: relative;
     }
 
+    /* Diagonal wedge shape that overlaps the right side slightly —
+       creates a dynamic split edge instead of a flat vertical line */
     .hero-left::after {
       content: '';
       position: absolute;
       top: 0; right: -60px;
       width: 120px; height: 100%;
       background: var(--green);
-      clip-path: polygon(0 0, 0% 100%, 100% 100%);
+      clip-path: polygon(0 0, 0% 100%, 100% 100%); /* triangle clipping mask */
       z-index: 2;
     }
 
+    /* Small label above the main headline e.g. "// Cycling & Adventure Journal" */
     .hero-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
@@ -108,28 +171,32 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Main headline — large serif text, scales with viewport width */
     .hero-title {
       font-family: 'Playfair Display', serif;
-      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-size: clamp(2.8rem, 5vw, 4.5rem); /* clamp(min, preferred, max) */
       line-height: 1.1;
-      color: var(--beige);
+      color: var(--stone);
       margin-bottom: 1.5rem;
     }
 
+    /* Italic accent words in the headline get a warm red colour */
     .hero-title em {
       font-style: italic;
-      color: var(--red-light);
+      color: var(--red-warm);
     }
 
+    /* The subtitle paragraph below the headline */
     .hero-sub {
       font-size: 1rem;
       font-weight: 300;
-      color: var(--beige-dark);
+      color: var(--stone-dark);
       line-height: 1.7;
       max-width: 380px;
       margin-bottom: 3rem;
     }
 
+    /* The "Read the journal →" button */
     .hero-cta {
       display: inline-flex;
       align-items: center;
@@ -146,25 +213,28 @@
       width: fit-content;
     }
 
+    /* Button hover: slightly lighter red, nudges right */
     .hero-cta:hover {
-      background: var(--red-light);
+      background: var(--red-warm);
       transform: translateX(4px);
     }
 
+    /* Right half of hero — olive green, holds photo placeholder + stats */
     .hero-right {
       background: var(--green-mid);
       position: relative;
       overflow: hidden;
     }
 
-    /* Decorative terrain lines */
+    /* The decorative SVG terrain/elevation lines in the background of hero-right */
     .hero-right svg {
       position: absolute;
       bottom: 0; left: 0;
       width: 100%; height: 100%;
-      opacity: 0.15;
+      opacity: 0.12;                  /* very subtle, mostly decorative */
     }
 
+    /* Container for the trip stats (4,500 km / ~40 days) in the bottom-right corner */
     .hero-stats {
       position: absolute;
       bottom: 3rem; right: 3rem;
@@ -174,17 +244,18 @@
       z-index: 2;
     }
 
-    .stat {
-      text-align: right;
-    }
+    /* Individual stat block */
+    .stat { text-align: right; }
 
+    /* The big number e.g. "4,500" */
     .stat-number {
       font-family: 'Playfair Display', serif;
       font-size: 2.5rem;
-      color: var(--beige);
+      color: var(--stone);
       line-height: 1;
     }
 
+    /* The small label below the number e.g. "km — Italy 2026" */
     .stat-label {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
@@ -193,16 +264,17 @@
       color: var(--green-light);
     }
 
+    /* Placeholder box where a photo will eventually go in the hero */
     .hero-photo-placeholder {
       position: absolute;
       top: 50%; left: 50%;
-      transform: translate(-50%, -50%);
-      width: 280px; height: 380px;
-      border: 1px solid rgba(240,232,216,0.2);
+      transform: translate(-50%, -50%); /* centres it perfectly */
+      width: 280px; height: 280px;
+      border: 1px solid rgba(196,180,154,0.2);
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(240,232,216,0.3);
+      color: rgba(196,180,154,0.3);
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
       letter-spacing: 0.1em;
@@ -210,13 +282,17 @@
       padding: 2rem;
     }
 
-    /* ── SECTIONS ── */
+    /* ══════════════════════════════════════════
+       SHARED SECTION STYLES
+       Reusable styles applied to all content sections (About, Links etc.)
+    ══════════════════════════════════════════ */
     section {
       padding: 6rem 3rem;
-      max-width: 1200px;
-      margin: 0 auto;
+      max-width: 1200px;              /* content never stretches too wide on large screens */
+      margin: 0 auto;                 /* centres the section horizontally */
     }
 
+    /* Small uppercase label above each section title e.g. "// About" */
     .section-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
@@ -226,6 +302,7 @@
       margin-bottom: 1rem;
     }
 
+    /* Large serif heading for each section */
     .section-title {
       font-family: 'Playfair Display', serif;
       font-size: clamp(2rem, 4vw, 3rem);
@@ -233,14 +310,18 @@
       margin-bottom: 1rem;
     }
 
+    /* Short red horizontal line under section titles — a visual divider */
     .section-divider {
-      width: 60px;
+      width: 160px;
       height: 2px;
       background: var(--red);
       margin-bottom: 3rem;
     }
 
-    /* ── ABOUT ── */
+    /* ══════════════════════════════════════════
+       ABOUT SECTION
+       Two-column layout: text on left, photo placeholder on right.
+    ══════════════════════════════════════════ */
     .about-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
@@ -248,6 +329,7 @@
       align-items: center;
     }
 
+    /* Body text paragraphs in the about section */
     .about-text p {
       font-size: 1.05rem;
       font-weight: 300;
@@ -256,11 +338,13 @@
       margin-bottom: 1.2rem;
     }
 
+    /* Bold words within about text get the dark green colour */
     .about-text p strong {
       color: var(--green);
       font-weight: 500;
     }
 
+    /* The photo placeholder box in the about section */
     .about-image {
       background: var(--green);
       height: 400px;
@@ -268,36 +352,45 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: rgba(240,232,216,0.3);
+      color: rgba(196,180,154,0.3);
       font-family: 'DM Mono', monospace;
       font-size: 0.7rem;
       letter-spacing: 0.1em;
     }
 
+    /* Decorative offset border behind the about photo box */
     .about-image::before {
       content: '';
       position: absolute;
       top: 16px; left: 16px; right: -16px; bottom: -16px;
-      border: 1px solid var(--beige-dark);
+      border: 1px solid var(--stone-dark);
       z-index: -1;
     }
 
-    /* ── BLOG PREVIEW ── */
+    /* ══════════════════════════════════════════
+       BLOG PREVIEW SECTION
+       Full-width dark green band with three blog post cards.
+    ══════════════════════════════════════════ */
+
+    /* The outer wrapper — full page width, dark green background */
     .blog-section {
       background: var(--green);
       max-width: 100%;
       padding: 6rem 0;
     }
 
+    /* Inner content container — constrains width and adds horizontal padding */
     .blog-inner {
       max-width: 1200px;
       margin: 0 auto;
       padding: 0 3rem;
     }
 
-    .blog-inner .section-title { color: var(--beige); }
-    .blog-inner .section-tag { color: var(--green-light); }
+    /* Override section title and tag colours for the dark background */
+    .blog-inner .section-title { color: var(--stone); }
+    .blog-inner .section-tag   { color: var(--green-light); }
 
+    /* Three blog cards in a row */
     .blog-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -305,6 +398,7 @@
       margin-top: 3rem;
     }
 
+    /* Individual blog card — olive background, left red border accent */
     .blog-card {
       background: var(--green-mid);
       padding: 2rem;
@@ -314,11 +408,13 @@
       display: block;
     }
 
+    /* Card lifts up slightly on hover */
     .blog-card:hover {
       transform: translateY(-4px);
-      border-color: var(--red-light);
+      border-color: var(--red-warm);
     }
 
+    /* Small category label on each card e.g. "Italy 2026" */
     .blog-card-tag {
       font-family: 'DM Mono', monospace;
       font-size: 0.65rem;
@@ -328,22 +424,29 @@
       margin-bottom: 0.75rem;
     }
 
+    /* Blog post title on the card */
     .blog-card-title {
       font-family: 'Playfair Display', serif;
       font-size: 1.2rem;
-      color: var(--beige);
+      color: var(--stone);
       line-height: 1.4;
       margin-bottom: 1rem;
     }
 
+    /* Short excerpt text on the card */
     .blog-card-excerpt {
       font-size: 0.9rem;
       font-weight: 300;
-      color: var(--beige-dark);
+      color: var(--stone-dark);
       line-height: 1.6;
     }
 
-    /* ── LINKS ── */
+    /* ══════════════════════════════════════════
+       LINKS SECTION
+       A responsive grid of cards linking to external websites.
+    ══════════════════════════════════════════ */
+
+    /* Auto-fit grid: fills as many columns as fit, minimum 240px each */
     .links-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -351,9 +454,10 @@
       margin-top: 3rem;
     }
 
+    /* Individual link card */
     .link-card {
       background: var(--white);
-      border: 1px solid var(--beige-dark);
+      border: 1px solid var(--stone);
       padding: 1.75rem;
       text-decoration: none;
       display: flex;
@@ -362,22 +466,25 @@
       transition: border-color 0.2s, transform 0.2s;
     }
 
+    /* Card lifts and border turns green on hover */
     .link-card:hover {
       border-color: var(--green-light);
       transform: translateY(-2px);
     }
 
+    /* The small square icon on the left of each link card */
     .link-icon {
       width: 40px; height: 40px;
       background: var(--green);
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      color: var(--beige);
+      flex-shrink: 0;                 /* prevents icon from shrinking */
+      color: var(--stone);
       font-size: 1rem;
     }
 
+    /* Site name in the link card */
     .link-card-title {
       font-family: 'DM Sans', sans-serif;
       font-weight: 500;
@@ -386,13 +493,17 @@
       margin-bottom: 0.3rem;
     }
 
+    /* Short description in the link card */
     .link-card-desc {
       font-size: 0.8rem;
       color: var(--text-muted);
       line-height: 1.5;
     }
 
-    /* ── ITALY BANNER ── */
+    /* ══════════════════════════════════════════
+       ITALY EXPEDITION BANNER
+       Full-width terracotta red band promoting the Italy 2026 trip.
+    ══════════════════════════════════════════ */
     .italy-banner {
       background: var(--red);
       padding: 4rem 3rem;
@@ -407,7 +518,7 @@
     }
 
     .italy-banner p {
-      color: rgba(253,250,245,0.8);
+      color: rgba(253,250,244,0.8);
       font-weight: 300;
       font-size: 1rem;
       max-width: 500px;
@@ -415,6 +526,7 @@
       line-height: 1.7;
     }
 
+    /* Outlined button on the banner */
     .italy-banner a {
       display: inline-block;
       border: 1px solid var(--white);
@@ -428,9 +540,13 @@
       transition: background 0.2s;
     }
 
-    .italy-banner a:hover { background: rgba(253,250,245,0.1); }
+    /* Subtle white overlay on hover */
+    .italy-banner a:hover { background: rgba(253,250,244,0.1); }
 
-    /* ── FOOTER ── */
+    /* ══════════════════════════════════════════
+       FOOTER
+       Simple dark green bar at the bottom of the page.
+    ══════════════════════════════════════════ */
     footer {
       background: var(--green);
       padding: 3rem;
@@ -441,7 +557,7 @@
 
     footer .logo {
       font-family: 'Playfair Display', serif;
-      color: var(--beige);
+      color: var(--stone);
       font-size: 1.1rem;
     }
 
@@ -453,41 +569,55 @@
       text-transform: uppercase;
     }
 
-    /* ── ANIMATIONS ── */
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+       The hero text elements fade up into view on page load,
+       each with a slightly longer delay so they appear one after another.
+    ══════════════════════════════════════════ */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(30px); } /* starts invisible, 30px below */
+      to   { opacity: 1; transform: translateY(0); }    /* ends fully visible, in position */
     }
 
+    /* Apply fadeUp to each hero text element */
     .hero-tag, .hero-title, .hero-sub, .hero-cta {
       opacity: 0;
       animation: fadeUp 0.7s ease forwards;
     }
+    /* Staggered delays so each element appears after the previous one */
     .hero-tag   { animation-delay: 0.1s; }
     .hero-title { animation-delay: 0.25s; }
     .hero-sub   { animation-delay: 0.4s; }
     .hero-cta   { animation-delay: 0.55s; }
 
-    /* ── RESPONSIVE ── */
+    /* ══════════════════════════════════════════
+       RESPONSIVE — MOBILE
+       On screens narrower than 768px (phones/tablets), the layout
+       switches from side-by-side columns to stacked single column.
+    ══════════════════════════════════════════ */
     @media (max-width: 768px) {
       nav { padding: 1rem 1.5rem; }
       .nav-links { gap: 1.5rem; }
-      .hero { grid-template-columns: 1fr; }
+      .hero { grid-template-columns: 1fr; }          /* hero stacks vertically */
       .hero-left { padding: 7rem 2rem 3rem; }
-      .hero-left::after { display: none; }
+      .hero-left::after { display: none; }           /* hide the diagonal wedge on mobile */
       .hero-right { min-height: 300px; }
-      .about-grid { grid-template-columns: 1fr; }
-      .blog-grid { grid-template-columns: 1fr; }
+      .about-grid { grid-template-columns: 1fr; }    /* about stacks vertically */
+      .blog-grid  { grid-template-columns: 1fr; }    /* blog cards stack vertically */
       section { padding: 4rem 1.5rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- NAV -->
+  <!-- ══════════════════════════════════════════
+       NAVIGATION BAR
+       Fixed header at the top. Logo on left, page links on right.
+  ══════════════════════════════════════════ -->
   <nav>
-    <a class="nav-logo" href="#">Eddie Appelberg</a>
+    <a class="nav-logo" href="#">Edvard Appelberg</a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#blog">Blog</a></li>
@@ -496,8 +626,13 @@
     </ul>
   </nav>
 
-  <!-- HERO -->
+  <!-- ══════════════════════════════════════════
+       HERO SECTION
+       Full-screen split: left = headline text, right = photo + stats.
+  ══════════════════════════════════════════ -->
   <div class="hero">
+
+    <!-- Left side: tagline, headline, subtitle, CTA button -->
     <div class="hero-left">
       <p class="hero-tag">// Cycling & Adventure Journal</p>
       <h1 class="hero-title">
@@ -507,18 +642,23 @@
       <p class="hero-sub">
         Bikepacking across Europe. Long climbs, gravel roads, and the kind of silence you only find far from home.
       </p>
-      <a href="#blog" class="hero-cta">
-        Read the journal →
-      </a>
+      <a href="#blog" class="hero-cta">Read the journal →</a>
     </div>
+
+    <!-- Right side: decorative SVG background, photo placeholder, trip stats -->
     <div class="hero-right">
-      <!-- Decorative terrain SVG -->
+
+      <!-- SVG terrain lines — three curved paths suggesting an elevation profile -->
       <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-        <path d="M0,400 Q100,300 200,350 Q300,400 400,250 Q500,100 600,200 L600,600 L0,600 Z" fill="none" stroke="#F0E8D8" stroke-width="1.5"/>
-        <path d="M0,450 Q150,350 250,380 Q350,410 450,280 Q550,150 600,250 L600,600 L0,600 Z" fill="none" stroke="#F0E8D8" stroke-width="1"/>
-        <path d="M0,500 Q100,420 200,440 Q300,460 420,340 Q520,220 600,300 L600,600 L0,600 Z" fill="none" stroke="#F0E8D8" stroke-width="0.5"/>
+        <path d="M0,400 Q100,300 200,350 Q300,400 400,250 Q500,100 600,200 L600,600 L0,600 Z" fill="none" stroke="#C4B49A" stroke-width="1.5"/>
+        <path d="M0,450 Q150,350 250,380 Q350,410 450,280 Q550,150 600,250 L600,600 L0,600 Z" fill="none" stroke="#C4B49A" stroke-width="1"/>
+        <path d="M0,500 Q100,420 200,440 Q300,460 420,340 Q520,220 600,300 L600,600 L0,600 Z" fill="none" stroke="#C4B49A" stroke-width="0.5"/>
       </svg>
+
+      <!-- Replace this div with an <img> tag when you have a real photo -->
       <div class="hero-photo-placeholder">Add your<br>hero photo here</div>
+
+      <!-- Trip stats shown in bottom-right corner -->
       <div class="hero-stats">
         <div class="stat">
           <div class="stat-number">4,500</div>
@@ -529,10 +669,15 @@
           <div class="stat-label">days on the road</div>
         </div>
       </div>
+
     </div>
   </div>
 
-  <!-- ABOUT -->
+  <!-- ══════════════════════════════════════════
+       ABOUT SECTION
+       Two columns: descriptive text left, photo placeholder right.
+       Edit the text here to personalise your bio.
+  ══════════════════════════════════════════ -->
   <section id="about">
     <p class="section-tag">// About</p>
     <h2 class="section-title">Rider. Analyst.<br>Wanderer.</h2>
@@ -549,49 +694,73 @@
           Expect route notes, gear lists, maps pulled from Strava, and the occasional data deep-dive.
         </p>
       </div>
+      <!-- Replace this div with <img src="assets/images/yourphoto.jpg"> later -->
       <div class="about-image">Add a photo of yourself here</div>
     </div>
   </section>
 
-  <!-- BLOG PREVIEW -->
+  <!-- ══════════════════════════════════════════
+       BLOG PREVIEW SECTION
+       Dark green full-width band with three blog post cards.
+       Edit the card titles/excerpts to match your real posts.
+       The href="blog" links will connect to your blog page later.
+  ══════════════════════════════════════════ -->
   <div class="blog-section" id="blog">
     <div class="blog-inner">
       <p class="section-tag">// Latest posts</p>
       <h2 class="section-title">From the journal</h2>
       <div class="section-divider" style="background: var(--red);"></div>
       <div class="blog-grid">
+
+        <!-- Blog card 1 — edit title/excerpt to match your real post -->
         <a href="blog" class="blog-card">
           <p class="blog-card-tag">Italy 2026</p>
           <h3 class="blog-card-title">Planning a 4,500km loop through Italy</h3>
           <p class="blog-card-excerpt">Route planning notes for a May–June expedition through Sardinia, Sicily and the Italian mainland.</p>
         </a>
+
+        <!-- Blog card 2 -->
         <a href="blog" class="blog-card">
           <p class="blog-card-tag">Gear</p>
           <h3 class="blog-card-title">What goes in the bags for a 40-day trip</h3>
           <p class="blog-card-excerpt">A practical breakdown of bikepacking kit optimised for heat, distance, and rough roads.</p>
         </a>
+
+        <!-- Blog card 3 -->
         <a href="blog" class="blog-card">
           <p class="blog-card-tag">Training</p>
           <h3 class="blog-card-title">Building base fitness on Zwift</h3>
           <p class="blog-card-excerpt">How indoor training through a Swedish winter translates to long days in the saddle.</p>
         </a>
+
       </div>
     </div>
   </div>
 
-  <!-- ITALY BANNER -->
+  <!-- ══════════════════════════════════════════
+       ITALY EXPEDITION BANNER
+       Full-width terracotta call-to-action strip.
+       Links to the dashboard/routes page.
+  ══════════════════════════════════════════ -->
   <div class="italy-banner">
     <h2>Italia 2026 — 4,500 km</h2>
     <p>Following the roads south from Veneto through the mainland, across to Sicily and up through Sardinia. Starting May 2026.</p>
     <a href="dashboard">Follow the route →</a>
   </div>
 
-  <!-- LINKS -->
+  <!-- ══════════════════════════════════════════
+       LINKS SECTION
+       Add your favourite external websites here.
+       To add a new card: copy one <a class="link-card"> block,
+       change the href to the URL, and update the title and desc text.
+  ══════════════════════════════════════════ -->
   <section id="links">
     <p class="section-tag">// Around the web</p>
     <h2 class="section-title">Places I read</h2>
     <div class="section-divider"></div>
     <div class="links-grid">
+
+      <!-- Link card: Strava — target="_blank" opens in a new tab -->
       <a href="https://www.strava.com" target="_blank" class="link-card">
         <div class="link-icon">↗</div>
         <div>
@@ -599,6 +768,8 @@
           <p class="link-card-desc">My activity feed and route archive</p>
         </div>
       </a>
+
+      <!-- Link card: Bikepacking.com -->
       <a href="https://www.bikepacking.com" target="_blank" class="link-card">
         <div class="link-icon">↗</div>
         <div>
@@ -606,6 +777,8 @@
           <p class="link-card-desc">Routes, gear reviews and inspiration</p>
         </div>
       </a>
+
+      <!-- Placeholder — replace href="#" with a real URL -->
       <a href="#" class="link-card">
         <div class="link-icon">↗</div>
         <div>
@@ -613,6 +786,8 @@
           <p class="link-card-desc">Add your favourite sites here</p>
         </div>
       </a>
+
+      <!-- Placeholder — replace href="#" with a real URL -->
       <a href="#" class="link-card">
         <div class="link-icon">↗</div>
         <div>
@@ -620,10 +795,14 @@
           <p class="link-card-desc">Add your favourite sites here</p>
         </div>
       </a>
+
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ══════════════════════════════════════════
+       FOOTER
+       Simple bottom bar with name and location.
+  ══════════════════════════════════════════ -->
   <footer>
     <span class="logo">Eddie Appelberg</span>
     <p>Skellefteå, Sweden — Built with HTML & CSS</p>
