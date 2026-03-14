@@ -270,22 +270,14 @@
       color: var(--green-light);
     }
 
-    /* Placeholder box where a photo will eventually go in the hero */
-    .hero-photo-placeholder {
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%); /* centres it perfectly */
-      width: 280px; height: 280px;
-      border: 1px solid rgba(196,180,154,0.2);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(196,180,154,0.3);
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.1em;
-      text-align: center;
-      padding: 2rem;
+    .hero-photo {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 280px;
+    object-fit: cover;      /* crops the image to fill the box without stretching */
+    border-radius: 50%;     /* optional — makes it a circle, remove if you want square */
     }
 
     /* ══════════════════════════════════════════
