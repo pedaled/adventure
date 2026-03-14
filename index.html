@@ -410,7 +410,7 @@
 
     /* Card lifts up slightly on hover */
     .blog-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-8px);
       border-color: var(--red-warm);
     }
 
@@ -575,7 +575,7 @@
        each with a slightly longer delay so they appear one after another.
     ══════════════════════════════════════════ */
     @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(30px); } /* starts invisible, 30px below */
+      from { opacity: 0; transform: translateY(40px); } /* starts invisible, 30px below */
       to   { opacity: 1; transform: translateY(0); }    /* ends fully visible, in position */
     }
 
@@ -588,7 +588,7 @@
     .hero-tag   { animation-delay: 0.1s; }
     .hero-title { animation-delay: 0.25s; }
     .hero-sub   { animation-delay: 0.4s; }
-    .hero-cta   { animation-delay: 0.55s; }
+    .hero-cta   { animation-delay: 0.80s; } /*55
 
     /* ══════════════════════════════════════════
        RESPONSIVE — MOBILE
@@ -634,13 +634,16 @@
 
     <!-- Left side: tagline, headline, subtitle, CTA button -->
     <div class="hero-left">
-      <p class="hero-tag">// Cycling & Adventure Journal</p>
+      <p class="hero-tag"> Bikepacking Journal</p>
       <h1 class="hero-title">
-        Riding through<br>
-        <em>wild places</em>
+        Exploring the<br>
+        <em>Authentic</em>
+        Italy<br>
+        <em>Starting May 14th</em>
       </h1>
       <p class="hero-sub">
-        Bikepacking across Europe. Long climbs, gravel roads, and the kind of silence you only find far from home.
+        Bikepacking across Italy. Food, people, and all the cultural gems in between. 
+        Long climbs, gravel roads, and the kind of silence you only find far from home.
       </p>
       <a href="#blog" class="hero-cta">Read the journal →</a>
     </div>
