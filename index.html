@@ -274,8 +274,8 @@
     position: absolute;
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 280px;
-    height: 280px;
+    width: 500px;
+    height: 500px;
     object-fit: cover;      /* crops the image to fill the box without stretching */
     border-radius: 50%;     /* optional — makes it a circle, remove if you want square */
     }
@@ -345,7 +345,8 @@
     /* The photo placeholder box in the about section */
     .about-image {
       background: var(--green);
-      height: 400px;
+      width: 400px;
+      height: 600px;
       position: relative;
       display: flex;
       align-items: center;
@@ -604,7 +605,163 @@
       .blog-grid  { grid-template-columns: 1fr; }    /* blog cards stack vertically */
       section { padding: 4rem 1.5rem; }
       footer { flex-direction: column; gap: 1rem; text-align: center; }
+      .hero-photo {
+       width: 180px;
+      height: 180px;}
+      .about-image {
+       width: 200px;
+      height: 300px;}
     }
+
+
+/* Full-width terracotta red band */
+.activities-section {
+  background: var(--red);
+  padding: 4rem 0;
+}
+
+.activities-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 3rem;
+}
+
+/* Top row: section label on left, Strava profile link on right */
+.activities-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 0.75rem;
+}
+
+/* Override section-tag colour for red background */
+.activities-section .section-tag {
+  color: rgba(253,250,244,0.6);
+  margin-bottom: 0;
+}
+
+/* "View profile on Strava →" link top-right */
+.strava-profile-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'DM Mono', monospace;
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.strava-profile-link:hover { opacity: 1; }
+
+/* Section title on red background */
+.activities-section .section-title {
+  color: var(--white);
+  margin-bottom: 0.75rem;
+}
+
+/* Short divider line */
+.activities-section .section-divider {
+  background: rgba(253,250,244,0.25);
+  margin-bottom: 2rem;
+}
+
+/* Three cards side by side, equal width, narrow gap */
+.activities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;                        /* narrow gap between cards */
+}
+
+/* Individual activity card — dark on red background */
+.activity-card {
+  background: rgba(0,0,0,0.18);    /* semi-transparent dark overlay */
+  border: 1px solid rgba(253,250,244,0.12);
+  border-top: 2px solid var(--yellow); /* golden top accent */
+  padding: 1.5rem 1.25rem;
+}
+
+/* Top row inside card: Strava chevron icon + date */
+.activity-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+/* Date text */
+.activity-date {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(253,250,244,0.45);
+}
+
+/* Ride name */
+.activity-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 1.25rem;
+  min-height: 2.8rem;               /* keeps cards same height if title is short */
+}
+
+/* Stats stacked vertically below the title */
+.activity-stats {
+  display: flex;
+  flex-direction: column;           /* stacked, not side by side */
+  gap: 0.75rem;
+}
+
+/* One stat row: value + label side by side */
+.activity-stat {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid rgba(253,250,244,0.08);
+  padding-bottom: 0.5rem;
+}
+
+/* Last stat has no border */
+.activity-stat:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+/* The number e.g. "87.3 km" */
+.activity-stat-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  color: var(--yellow);
+}
+
+/* The label e.g. "Distance" */
+.activity-stat-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(253,250,244,0.4);
+}
+
+/* Stack cards on mobile */
+@media (max-width: 768px) {
+  .activities-grid { grid-template-columns: 1fr; }
+  .activities-inner { padding: 0 1.5rem; }
+  .activities-header-row { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+}
+
+
+
+
+
+
+    
   </style>
 </head>
 
@@ -640,7 +797,7 @@
         <bo>Starting May 10th 2026</bo>
       </h1>
       <p class="hero-sub">
-        This summer I will bikepack across Italy, to explore the food, people, and all the cultural gems in between. 
+        My mission is to explore the Italian nature, people, food and all the cultural gems along the way.
         .
       </p>
       <a href="#blog" class="hero-cta">Read the journal →</a>
@@ -662,12 +819,16 @@
       <!-- Trip stats shown in bottom-right corner -->
       <div class="hero-stats">
         <div class="stat">
-          <div class="stat-number">4,500</div>
-          <div class="stat-label">km — Italy 2026</div>
+          <div class="stat-number">~45</div>
+          <div class="stat-label">days on the road</div>
         </div>
         <div class="stat">
-          <div class="stat-number">~40</div>
-          <div class="stat-label">days on the road</div>
+          <div class="stat-number">~5000</div>
+          <div class="stat-label">km</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">Millions</div>
+          <div class="stat-label">of pedal strokes</div>
         </div>
       </div>
 
@@ -681,24 +842,156 @@
   ══════════════════════════════════════════ -->
   <section id="about">
     <p class="section-tag">// About</p>
-    <h2 class="section-title">Rider. Analyst.<br>Wanderer.</h2>
+    <h2 class="section-title">Curious. Analytic. Adventurous.</h2>
     <div class="section-divider"></div>
     <div class="about-grid">
       <div class="about-text">
         <p>
-          Based in <strong>Skellefteå, Sweden</strong> — I spend my days working with Nordic electricity markets and my evenings planning the next ride.
+          Currently based in <strong>Skellefteå, Sweden</strong> — I spend my days analysing electricity markets and my spare time 
+          planning this passion project: Bikepacking across Italy 2026. <br>
+          I enjoy working out, learning new languages and cooking something new. <br>
         </p>
         <p>
-          This site is a journal of where the roads take me. Long-distance bikepacking, gravel routes through Scandinavia, and in May 2026 — a <strong>4,500km loop through Italy</strong> covering Sardinia, Sicily and the mainland.
+          The project <em>Italy 2026</em> will cover <strong>5,000km through Italy</strong> covering Sardinia, Sicily and the mainland. <br>
+          My objective is to combine challenging efforts with profound encounters with Italian people and the Italian culture.
         </p>
         <p>
-          Expect route notes, gear lists, maps pulled from Strava, and the occasional data deep-dive.
+          This site is still under construction but I aim to share the ride in a convenient way here. 
+          Expect route notes, gear lists, maps pulled from Strava, and much more!
         </p>
       </div>
-      <!-- Replace this div with <img src="assets/images/yourphoto.jpg"> later -->
-      <div class="about-image">Add a photo of yourself here</div>
+      <img src="assets/images/profile2.jpg" alt="Profile photo" class="about-image"/>
     </div>
   </section>
+
+  <!-- ══════════════════════════════════════════
+       ITALY SECTION
+       Two columns: descriptive text left, photo placeholder right.
+       Edit the text here to personalise your bio.
+  ══════════════════════════════════════════ -->
+  <section id="about">
+    <p class="section-tag">// Why Italy?</p>
+    <h2 class="section-title">Diverse.<br>Authentic.<br>Historical.<br>Challenging.<br>Tasty.</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+        This project is the result of several passions coming together as one.<br>
+        The language: Ever since I started learning Italian on my own I've been dreaming of visiting different regions and speaking with locals.<br>
+        The challenge: A challenge like this feeds me motivation and a sense of accomplishment.<br>
+        The variation: Italian nature and culture is quite diverse, and I am curious to get a feel of the similarities and differences across the regions.<br>
+        The hospitality: Italians are delighted when a foreigner speaks Italian, and can open up in a way that feels authentic.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════
+      REPLACE your current activities-section div with this
+  ══════════════════════════════════════════ -->
+  <div class="activities-section">
+    <div class="activities-inner">
+
+      <!-- Top row: label left, Strava profile link right -->
+      <div class="activities-header-row">
+        <p class="section-tag">// Latest rides</p>
+        <a href="https://www.strava.com/athletes/33737566" target="_blank" class="strava-profile-link">
+          <!-- Strava chevron icon inline -->
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.6 16.3l-2.3-4.6H5.5l5.1 9.3 5.1-9.3h-2.8l-2.3 4.6zM15.7 7l-2.1 4.2h2.8L19.5 4 15.7 7z"/>
+            <path d="M10.6 4L6.8 11.2h2.8L10.6 9l1 2.2h2.8L10.6 4z"/>
+          </svg>
+          View profile on Strava →
+        </a>
+      </div>
+
+      <h2 class="section-title">My three recent activities:</h2>
+      <div class="section-divider"></div>
+
+      <!-- Three cards side by side -->
+      <div class="activities-grid">
+
+        <!-- Card 1 — most recent. Replace placeholder text with your real ride data -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--yellow)" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.6 16.3l-2.3-4.6H5.5l5.1 9.3 5.1-9.3h-2.8l-2.3 4.6zM15.7 7l-2.1 4.2h2.8L19.5 4 15.7 7z"/>
+              <path d="M10.6 4L6.8 11.2h2.8L10.6 9l1 2.2h2.8L10.6 4z"/>
+            </svg>
+            <span class="activity-date">14 Mar 2026</span>
+          </div>
+          <h3 class="activity-title">My latest ride title</h3>
+          <div class="activity-stats">
+            <div class="activity-stat">
+              <span class="activity-stat-value">-- km</span>
+              <span class="activity-stat-label">Distance</span>
+            </div>
+            <div class="activity-stat">
+              <span class="activity-stat-value">--:--</span>
+              <span class="activity-stat-label">Moving time</span>
+            </div>
+            <div class="activity-stat">
+              <span class="activity-stat-value">-- m</span>
+              <span class="activity-stat-label">Elevation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 — second most recent -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--yellow)" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.6 16.3l-2.3-4.6H5.5l5.1 9.3 5.1-9.3h-2.8l-2.3 4.6zM15.7 7l-2.1 4.2h2.8L19.5 4 15.7 7z"/>
+              <path d="M10.6 4L6.8 11.2h2.8L10.6 9l1 2.2h2.8L10.6 4z"/>
+            </svg>
+            <span class="activity-date">12 Mar 2026</span>
+          </div>
+          <h3 class="activity-title">Your second latest ride</h3>
+          <div class="activity-stats">
+            <div class="activity-stat">
+              <span class="activity-stat-value">-- km</span>
+              <span class="activity-stat-label">Distance</span>
+            </div>
+            <div class="activity-stat">
+              <span class="activity-stat-value">--:--</span>
+              <span class="activity-stat-label">Moving time</span>
+            </div>
+            <div class="activity-stat">
+              <span class="activity-stat-value">-- m</span>
+              <span class="activity-stat-label">Elevation</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 — third most recent -->
+        <div class="activity-card">
+          <div class="activity-header">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="var(--yellow)" xmlns="http://www.w3.org/2000/svg">
+              <path d="M10.6 16.3l-2.3-4.6H5.5l5.1 9.3 5.1-9.3h-2.8l-2.3 4.6zM15.7 7l-2.1 4.2h2.8L19.5 4 15.7 7z"/>
+              <path d="M10.6 4L6.8 11.2h2.8L10.6 9l1 2.2h2.8L10.6 4z"/>
+            </svg>
+            <span class="activity-date">10 Mar 2026</span>
+          </div>
+          <h3 class="activity-title">Your third latest ride</h3>
+          <div class="activity-stats">
+            <div class="activity-stat">
+              <span class="activity-stat-value">-- km</span>
+              <span class="activity-stat-label">Distance</span>
+            </div>
+            <div class="activity-stat">
+              <span class="activity-stat-value">--:--</span>
+              <span class="activity-stat-label">Moving time</span>
+            </div>
+            <div class="activity-stat">
+              <span class="activity-stat-value">-- m</span>
+              <span class="activity-stat-label">Elevation</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
 
   <!-- ══════════════════════════════════════════
        BLOG PREVIEW SECTION
@@ -745,15 +1038,15 @@
   ══════════════════════════════════════════ -->
   <div class="italy-banner">
     <h2>Italia 2026 — 4,500 km</h2>
-    <p>Following the roads south from Veneto through the mainland, across to Sicily and up through Sardinia. Starting May 2026.</p>
-    <a href="dashboard">Follow the route →</a>
+    <p>Along the Ligurian coast to Genoa, then island-hopping through Sardinia and Sicily before snaking my way north via
+      Calabria, Apulia, Campania, Abruzzo, Marche to Veneto and Lombardy. Starting May 2026.</p>
+    <a href="dashboard">See the route →</a>
   </div>
 
   <!-- ══════════════════════════════════════════
-       LINKS SECTION
-       Add your favourite external websites here.
-       To add a new card: copy one <a class="link-card"> block,
-       change the href to the URL, and update the title and desc text.
+      LINKS SECTION
+      SVG icons for Strava and Instagram instead of arrow.
+      target="_blank" opens links in a new tab.
   ══════════════════════════════════════════ -->
   <section id="links">
     <p class="section-tag">// Around the web</p>
@@ -761,16 +1054,38 @@
     <div class="section-divider"></div>
     <div class="links-grid">
 
-      <!-- Link card: Strava — target="_blank" opens in a new tab -->
-      <a href="https://www.strava.com" target="_blank" class="link-card">
-        <div class="link-icon">↗</div>
+      <!-- Instagram card — uses official Instagram SVG logo -->
+      <a href="https://www.instagram.com/biketoured/" target="_blank" class="link-card">
+        <div class="link-icon">
+          <!-- Instagram SVG icon -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="20" height="20" rx="5" ry="5" stroke="currentColor" stroke-width="2"/>
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor"/>
+          </svg>
+        </div>
         <div>
-          <p class="link-card-title">Strava</p>
-          <p class="link-card-desc">My activity feed and route archive</p>
+          <p class="link-card-title">Instagram</p>
+          <p class="link-card-desc">Follow me on Instagram</p>
         </div>
       </a>
 
-      <!-- Link card: Bikepacking.com -->
+      <!-- Strava card — uses official Strava SVG logo shape -->
+      <a href="https://www.strava.com/athletes/33737566" target="_blank" class="link-card">
+        <div class="link-icon">
+          <!-- Strava SVG icon (the "S" chevron shape) -->
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+            <path d="M10.6 16.3l-2.3-4.6H5.5l5.1 9.3 5.1-9.3h-2.8l-2.3 4.6zM15.7 7l-2.1 4.2h2.8L19.5 4 15.7 7z"/>
+            <path d="M10.6 4L6.8 11.2h2.8L10.6 9l1 2.2h2.8L10.6 4z"/>
+          </svg>
+        </div>
+        <div>
+          <p class="link-card-title">Strava</p>
+          <p class="link-card-desc">Take a look at my activity feed and route archive</p>
+        </div>
+      </a>
+
+      <!-- Bikepacking.com card — keeps the arrow since no brand icon needed -->
       <a href="https://www.bikepacking.com" target="_blank" class="link-card">
         <div class="link-icon">↗</div>
         <div>
@@ -779,33 +1094,16 @@
         </div>
       </a>
 
-      <!-- Placeholder — replace href="#" with a real URL -->
-      <a href="#" class="link-card">
-        <div class="link-icon">↗</div>
-        <div>
-          <p class="link-card-title">Your link here</p>
-          <p class="link-card-desc">Add your favourite sites here</p>
-        </div>
-      </a>
-
-      <!-- Placeholder — replace href="#" with a real URL -->
-      <a href="#" class="link-card">
-        <div class="link-icon">↗</div>
-        <div>
-          <p class="link-card-title">Your link here</p>
-          <p class="link-card-desc">Add your favourite sites here</p>
-        </div>
-      </a>
-
     </div>
   </section>
+
 
   <!-- ══════════════════════════════════════════
        FOOTER
        Simple bottom bar with name and location.
   ══════════════════════════════════════════ -->
   <footer>
-    <span class="logo">Eddie Appelberg</span>
+    <span class="logo">Edvard Appelberg<br>0725-532011</span>
     <p>Skellefteå, Sweden — Built with HTML & CSS</p>
   </footer>
 
