@@ -1,0 +1,53 @@
+/* ══════════════════════════════════════
+   INSTRUKTIONER — lägg till en ny post
+   ══════════════════════════════════════
+
+   1. Skapa en ny mapp i blog/posts/ med ett kort slug-namn
+      Exempel: dag2, dag3, genova, gear-wheels
+
+   2. Kopiera MALL-journal.md eller MALL-blog.md till mappen
+      Döp om filen till: en.md
+
+   3. Fyll i frontmatter-blocket (raderna mellan --- och ---)
+      OBS: slug nedan måste matcha mappnamnet EXAKT
+
+   4. Lägg till blocket nedan i posts.json
+      — Journal-post: kopiera JOURNAL-blocket
+      — Blogg-post: kopiera BLOG-blocket
+
+   5. Översätt en.md till sv.md och it.md (valfritt)
+
+   ══════════════════════════════════════ */
+
+
+/* ── JOURNAL-POST — kopiera detta block ── */
+{
+  "slug": "MAPPNAMN",
+  "type": "journal",
+  "date": "ÅÅÅÅ-MM-DD",
+  "day": X,
+  "location": "Stad, Region",
+  "km": 0,
+  "elevation": 0,
+  "cover": "../assets/images/placehold.png",
+  "title": {
+    "en": "Day X — Stad, Region",
+    "sv": "Dag X — Stad, Region",
+    "it": "Giorno X — Città, Regione"
+  }
+},
+
+
+/* ── BLOG-POST — kopiera detta block ── */
+{
+  "slug": "MAPPNAMN",
+  "type": "blog",
+  "date": "ÅÅÅÅ-MM-DD",
+  "tag": "Gear",
+  "cover": "../assets/images/placehold.png",
+  "title": {
+    "en": "Din engelska titel",
+    "sv": "Din svenska titel",
+    "it": "Din italienska titel"
+  }
+},

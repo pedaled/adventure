@@ -207,7 +207,7 @@
     }
 
     let allPosts = [];
-    fetch('posts.json')
+    fetch('/adventure/blog/posts.json')
       .then(r => r.json())
       .then(data => {
         allPosts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
