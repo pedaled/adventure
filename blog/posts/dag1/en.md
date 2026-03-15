@@ -11,7 +11,7 @@ title:
   sv: Dag 1 — Genova, Ligurien
   it: Giorno 1 — Genova, Liguria
 photos:
-  - src: photos/photo-01.jpg
+  - src: placehold.jpg
     caption: Descending into Genova as the sun hit the sea
   - src: photos/photo-02.jpg
     caption: Marco's wife's focaccia — worth every gram of extra weight
