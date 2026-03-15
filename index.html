@@ -60,20 +60,17 @@
       align-items: center;
       gap: 0.4rem;
     }
-
+      
     /* Each flag button — emoji only, no styling */
     .lang-btn {
       background: none;
       border: none;
       cursor: pointer;
-      font-size: 1.5rem;   /* large enough to show emoji flags properly */
-      line-height: 1;
       padding: 0.1rem 0.15rem;
       border-radius: 3px;
       opacity: 0.45;
       transition: opacity 0.2s, transform 0.15s;
-      /* IMPORTANT: prevents font rendering issues with flag emojis on Windows */
-      font-family: "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif;
+      line-height: 0;   /* removes extra space around the image */
     }
 
     .lang-btn:hover {
@@ -620,9 +617,17 @@
   <nav>
     <div class="lang-switcher">
       <!-- BUG FIX: <button> must be INSIDE <body>, and font-family set for emoji rendering -->
-      <button class="lang-btn active" data-lang="en" title="English">&#x1F1EC;&#x1F1E7;</button>
-      <button class="lang-btn"        data-lang="sv" title="Svenska">&#x1F1F8;&#x1F1EA;</button>
-      <button class="lang-btn"        data-lang="it" title="Italiano">&#x1F1EE;&#x1F1F9;</button>
+        <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en" title="English">
+      <img src="assets/images/flaguk.png" alt="English" width="50" height="50">
+    </button>
+    <button class="lang-btn" data-lang="sv" title="Svenska">
+      <img src="assets/images/flagse.png" alt="Svenska" width="50" height="50">
+    </button>
+    <button class="lang-btn" data-lang="it" title="Italiano">
+      <img src="assets/images/flagit.png" alt="Italiano" width="50" height="50">
+    </button>
+  </div>
     </div>
     <ul class="nav-links">
       <li><a href="#about"    data-en="About me"  data-sv="Om mig"   data-it="Chi sono">About me</a></li>
