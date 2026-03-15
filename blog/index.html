@@ -205,16 +205,22 @@
           </a>`;
       }).join('');
     }
-
     let allPosts = [];
     fetch('/adventure/blog/posts.json')
-      .then(r => r.json())
+      .then(r => {
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+        return r.json();
+      })
       .then(data => {
+        // Show how many posts were loaded — temporary debug
+        document.getElementById('posts-grid').innerHTML =
+          `<div class="empty-state">Loaded ${data.length} posts. First slug: ${data[0]?.slug}</div>`;
         allPosts = data.sort((a, b) => new Date(b.date) - new Date(a.date));
         applyLanguage(currentLang);
       })
-      .catch(() => {
-        document.getElementById('posts-grid').innerHTML = '<div class="empty-state">Could not load posts.</div>';
+      .catch(err => {
+        document.getElementById('posts-grid').innerHTML =
+          `<div class="empty-state">Fetch failed: ${err.message}</div>`;
       });
   </script>
 </body>
