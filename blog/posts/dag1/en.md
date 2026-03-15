@@ -5,7 +5,7 @@ day: 1
 location: Genova, Liguria
 km: 87
 elevation: 1240
-cover: photos/photo-01.jpg
+cover: ../assets/images/placehold.png
 title:
   en: Day 1 — Genova, Liguria
   sv: Dag 1 — Genova, Ligurien
