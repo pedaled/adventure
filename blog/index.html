@@ -311,24 +311,27 @@
   <!-- ══ NAV ══ -->
   <nav>
     <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="en" title="English">
-        <img src="../assets/images/flag-en.png" alt="English" width="24" height="16">
-      </button>
-      <button class="lang-btn" data-lang="sv" title="Svenska">
-        <img src="../assets/images/flag-sv.png" alt="Svenska" width="24" height="16">
-      </button>
-      <button class="lang-btn" data-lang="it" title="Italiano">
-        <img src="../assets/images/flag-it.png" alt="Italiano" width="24" height="16">
-      </button>
+      <!-- BUG FIX: <button> must be INSIDE <body>, and font-family set for emoji rendering -->
+        <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en" title="English">
+      <img src="assets/images/flaguk.png" alt="English" width="50" height="50">
+    </button>
+    <button class="lang-btn" data-lang="sv" title="Svenska">
+      <img src="assets/images/flagse.png" alt="Svenska" width="50" height="50">
+    </button>
+    <button class="lang-btn" data-lang="it" title="Italiano">
+      <img src="assets/images/flagit.png" alt="Italiano" width="50" height="50">
+    </button>
+  </div>
     </div>
     <ul class="nav-links">
-      <li><a href="../index.html#about" data-en="About me" data-sv="Om mig"   data-it="Chi sono">About me</a></li>
-      <li><a href="index.html" class="active" data-en="Blog" data-sv="Blogg" data-it="Blog">Blog</a></li>
-      <li><a href="../index.html#links" data-en="Links"    data-sv="Länkar"   data-it="Link">Links</a></li>
-      <li><a href="../dashboard"        data-en="Routes"   data-sv="Rutter"   data-it="Percorsi">Routes</a></li>
+      <li><a href="#about"    data-en="About me"  data-sv="Om mig"   data-it="Chi sono">About me</a></li>
+      <li><a href="#blog"     data-en="Blog"      data-sv="Blogg"    data-it="Blog">Blog</a></li>
+      <li><a href="#links"    data-en="Links"     data-sv="Länkar"   data-it="Link">Links</a></li>
+      <li><a href="dashboard" data-en="Routes"    data-sv="Rutter"   data-it="Percorsi">Routes</a></li>
     </ul>
   </nav>
-
+S
   <!-- ══ PAGE HEADER ══ -->
   <div class="page-header">
     <p class="section-tag"
