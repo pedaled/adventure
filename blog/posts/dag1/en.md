@@ -13,9 +13,7 @@ title:
 photos:
   - src: placehold.jpg
     caption: Descending into Genova as the sun hit the sea
-  - src: photos/photo-02.jpg
-    caption: Marco's wife's focaccia — worth every gram of extra weight
-  - src: photos/photo-03.jpg
+  - src: placehold.jpg
     caption: ""
 ---
 

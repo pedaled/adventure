@@ -218,16 +218,21 @@
           if (!r.ok) throw new Error('not found');
           return r.text();
         });
-
       tryFetch(currentLang)
         .catch(() => tryFetch('en'))
         .then(raw => {
+          if (!raw) throw new Error('empty');
+          
           const { meta, body } = parseFrontmatter(raw);
+          
+          // Safety checks — if parsing failed, meta will be empty
+          if (!meta.type) throw new Error('parse failed');
+          
           const photos  = meta.photos || [];
           const type    = meta.type || 'blog';
           const title   = meta.title ? (meta.title[currentLang] || meta.title.en || slug) : slug;
 
-          document.title = `${title} — Eddie Appelberg`;
+          document.title = `${title} — Edvard A`;
 
           const backLabel = backLabels[type][currentLang];
           const backHref  = `index.html?tab=${type}`;
@@ -256,10 +261,11 @@
             </div>
             ${content}`;
         })
-        .catch(() => {
-          document.getElementById('post-wrapper').innerHTML = '<div class="error-state">Post not found.</div>';
-        });
-    }
+        .catch((err) => {
+          // Shows the actual error in the page so you can debug
+          document.getElementById('post-wrapper').innerHTML =
+            `<div class="error-state">Post not found.<br><small>${err.message}</small></div>`;
+        });}
 
     applyLanguage(currentLang);
   </script>
